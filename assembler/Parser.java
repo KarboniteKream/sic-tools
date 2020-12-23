@@ -10,7 +10,7 @@ public class Parser {
     }
 
     public String parseLabel() {
-        if (lexer.col == 1 && Character.isLetter(lexer.peek())) {
+        if (lexer.col == 1 && (Character.isLetter(lexer.peek()) || lexer.peek() == '_')) {
             return lexer.readAlphanumeric();
         }
 

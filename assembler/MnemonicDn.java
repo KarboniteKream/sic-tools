@@ -6,10 +6,10 @@ public class MnemonicDn extends Mnemonic {
     public Node parse(Parser parser) throws SyntaxError {
         if (Character.isDigit(parser.lexer.peek())) {
             return new Directive(this, parser.parseNumber(0, Code.MAX_ADDR));
-        } else if (Character.isLetter(parser.lexer.peek())) {
+        } else if (Character.isLetter(parser.lexer.peek()) || parser.lexer.peek() == '_') {
             return new Directive(this, parser.parseSymbol());
         } else {
-            throw new SyntaxError(String.format("Invalid character '%c", parser.lexer.peek()),
+            throw new SyntaxError(String.format("Invalid character '%c'", parser.lexer.peek()),
                                   parser.lexer.row, parser.lexer.col);
         }
     }
